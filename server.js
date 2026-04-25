@@ -15,7 +15,7 @@ const queue = new PQueue({
   intervalCap: 3
 });
 
-const API_URL = "https://api.smartpaypesa.com/v1/initiatestk";
+const API_URL = "https://api.smartpaypesa.com/v1/initiatestk/";
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
