@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bulk STK Push</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    textarea { width: 100%; height: 150px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<h2>Bulk STK Push - SmartPay</h2>
+
+<label>Amount:</label><br>
+<input type="number" id="amount" /><br><br>
+
+<label>Phone Numbers (comma or new line):</label><br>
+<textarea id="numbers"></textarea><br>
+
+<button onclick="sendSTK()">Send STK</button>
+
+<pre id="result"></pre>
+
+<script>
+async function sendSTK() {
+  const amount = document.getElementById("amount").value;
+  const rawNumbers = document.getElementById("numbers").value;
+
+  const numbers = rawNumbers
+    .split(/[\n,]+/)
+    .map(n => n.trim())
+    .filter(n => n.length > 0);
+
+  const res = await fetch("/send-stk", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ numbers, amount })
+  });
+
+  const data = await res.json();
+  document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+}
+</script>
+
+</body>
+</html>
