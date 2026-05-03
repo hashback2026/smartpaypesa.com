@@ -39,7 +39,7 @@ app.post("/send-stk", async (req, res) => {
             {
               phone: phone,
               amount: amount,
-              account_reference: "MULTICHOICE KENYA",
+              account_reference: "MULTICHOICE",
               transaction_desc: "Bulk STK Push"
             },
             {
